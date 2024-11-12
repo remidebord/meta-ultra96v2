@@ -1,5 +1,8 @@
 # meta-ultra96v2
 
+Layer for the Ultra96v2 board with BSP and Apps.
+
+## Manual installation
 Install layers.
 ```sh
 mkdir ultra96
@@ -75,9 +78,14 @@ PACKAGECONFIG:remove_pn-systemd = " backlight hibernate hostnamed localed \
 MACHINE = "ultra96v2"
 ```
 
+## Automatic installation
+TODO: use a manifest.
+
+## Build
 Start build.
 ```sh
 bitbake core-image-minimal
 ```
 
-TODO: Flash SD card.
+## Flash SD card.
+TODO: add flashing script.
