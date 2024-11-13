@@ -2,6 +2,10 @@
 
 Layer for the Ultra96v2 board with BSP and Apps.
 
+No petalinux required, and based on [meta-avnet](https://github.com/Avnet/meta-avnet) content.
+
+Build performed on Ubuntu 22.04
+
 ## Manual installation
 Install layers.
 ```sh
@@ -50,9 +54,6 @@ DL_DIR = "/home/red/yocto/downloads/langdale"
 SSTATE_DIR = "/home/red/yocto/builds/langdale/ultra96/sstate-cache"
 TMPDIR = "/home/red/yocto/builds/langdale/ultra96/tmp"
 
-# Debug tweaks (see https://docs.yoctoproject.org/ref-manual/features.html#ref-features-image)
-EXTRA_IMAGE_FEATURES:append = " debug-tweaks empty-root-password allow-empty-password"
-
 # Remove useless features added by default
 DISTRO_FEATURES:remove = " alsa zeroconf 3g nfc x11"
 
@@ -88,4 +89,14 @@ bitbake core-image-minimal
 ```
 
 ## Flash SD card.
-TODO: add flashing script.
+
+Use the flash.sh script available in `scripts`.
+```
+../meta-ultra96v2/scripts/flash.sh /dev/sdc ~/yocto/builds/langdale/ultra96/tmp/deploy/images/ultra96v2/
+```
+
+See [How to format SD card for SD boot](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842385/How+to+format+SD+card+for+SD+boot) for more informations.
+
+## WiFi configuration
+
+TODO.
