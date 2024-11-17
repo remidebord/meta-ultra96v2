@@ -7,7 +7,7 @@
   <remote name="red"       fetch="https://github.com/remidebord"/>
 
   <project name="poky" remote="yocto" path="poky" revision="langdale"/>
-  <project name="meta-openembedded" remote="oe" path="poky/meta-oe" revision="langdale"/>
+  <project name="meta-openembedded" remote="oe" path="poky/meta-openembedded" revision="langdale"/>
 
   <project name="meta-xilinx" remote="xilinx" path="poky/meta-xilinx" revision="rel-v2023.2"/>
   <project name="meta-xilinx-tools" remote="xilinx" path="poky/meta-xilinx-tools" revision="rel-v2023.2"/>
