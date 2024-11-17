@@ -80,7 +80,11 @@ MACHINE = "ultra96v2"
 ```
 
 ## Automatic installation
-TODO: use a manifest.
+
+```sh
+repo init -u https://github.com/remidebord/meta-ultra96v2.git -m ultra96v2-2023.2.xml
+repo sync
+```
 
 ## Build
 Start build.
