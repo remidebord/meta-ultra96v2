@@ -6,7 +6,17 @@ No petalinux required, and based on [meta-avnet](https://github.com/Avnet/meta-a
 
 Build performed on Ubuntu 22.04
 
-## Manual installation
+## Installation
+
+```sh
+repo init -u https://github.com/remidebord/meta-ultra96v2.git -m ultra96v2-2023.2.xml
+repo sync
+
+cd poky
+TEMPLATECONF=meta-ultra96v2/conf/templates/ultra96v2-1 . oe-init-build-env
+```
+
+## (deprecated) Installation (Manual)
 Install layers.
 ```sh
 mkdir ultra96
@@ -77,13 +87,6 @@ PACKAGECONFIG:remove_pn-systemd = " backlight hibernate hostnamed localed \
 
 # Board/machine
 MACHINE = "ultra96v2"
-```
-
-## Automatic installation
-
-```sh
-repo init -u https://github.com/remidebord/meta-ultra96v2.git -m ultra96v2-2023.2.xml
-repo sync
 ```
 
 ## Build

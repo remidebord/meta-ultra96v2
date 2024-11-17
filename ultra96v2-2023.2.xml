@@ -12,6 +12,10 @@
   <project name="meta-xilinx" remote="xilinx" path="poky/meta-xilinx" revision="rel-v2023.2"/>
   <project name="meta-xilinx-tools" remote="xilinx" path="poky/meta-xilinx-tools" revision="rel-v2023.2"/>
 
-  <project name="meta-ultra96v2" remote="red" path="poky/meta-ultra96v2" revision="master"/>
+  <project name="meta-ultra96v2" remote="red" path="poky/meta-ultra96v2" revision="master">
+	<copyfile dest="poky/meta-poky/conf/templates/default/local.conf.sample" src="conf/templates/ultra96v2-1/local.conf.sample"/>
+	<copyfile dest="poky/meta-poky/conf/templates/default/bblayers.conf.sample" src="conf/templates/ultra96v2-1/bblayers.conf.sample"/>
+	<copyfile dest="poky/meta-poky/conf/templates/default/conf-notes.txt" src="conf/templates/ultra96v2-1/conf-notes.txt"/>
+  </project>
 
 </manifest>
