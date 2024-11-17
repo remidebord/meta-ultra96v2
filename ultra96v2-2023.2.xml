@@ -6,12 +6,12 @@
   <remote name="xilinx"    fetch="https://github.com/Xilinx"/>
   <remote name="red"       fetch="https://github.com/remidebord"/>
 
-  <project name="poky" remote="yocto" upstream="langdale"/>
-  <project name="meta-openembedded" remote="oe" path="poky" upstream="langdale"/>
+  <project name="poky" remote="yocto" path="poky" upstream="langdale"/>
+  <project name="meta-openembedded" remote="oe" path="poky/meta-oe" upstream="langdale"/>
 
-  <project name="meta-xilinx" remote="xilinx" path="poky" upstream="rel-v2023.2"/>
-  <project name="meta-xilinx-tools" remote="xilinx" path="poky" upstream="rel-v2023.2"/>
+  <project name="meta-xilinx" remote="xilinx" path="poky/meta-xilinx" upstream="rel-v2023.2"/>
+  <project name="meta-xilinx-tools" remote="xilinx" path="poky/meta-xilinx-tools" upstream="rel-v2023.2"/>
 
-  <project name="meta-ultra96v2" remote="red" path="poky"/>
+  <project name="meta-ultra96v2" remote="red" path="poky/meta-ultra96v2"/>
 
 </manifest>
