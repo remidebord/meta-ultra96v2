@@ -26,7 +26,7 @@ else
 	exit
 fi
 
-mountpoint -x ${device} || umount ${device}*
+mountpoint -x ${device} || umount -f ${device}*
 
 # Partitions
 parted -s ${device} rm 1

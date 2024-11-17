@@ -99,7 +99,7 @@ bitbake core-image-minimal
 
 Use the flash.sh script available in `scripts`.
 ```
-../meta-ultra96v2/scripts/flash.sh /dev/sdc ~/yocto/builds/langdale/ultra96/tmp/deploy/images/ultra96v2/
+sudo ../meta-ultra96v2/scripts/flash.sh /dev/sdc ~/builds/ultra96v2/tmp/deploy/images/ultra96v2/
 ```
 
 See [How to format SD card for SD boot](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842385/How+to+format+SD+card+for+SD+boot) for more informations.
