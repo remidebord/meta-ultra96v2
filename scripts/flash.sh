@@ -26,7 +26,16 @@ else
 	exit
 fi
 
-mountpoint -x ${device} || umount -f ${device}*
+mounts=`mount | grep ${device}`
+
+if [ "${mounts}" != "" ]; then
+	echo "unmount partitions..."
+	IFS=$'\n'
+	for entry in ${mounts}; do
+		dev=`echo ${entry} | cut -d " " -f 1`
+		umount -f ${dev}
+	done
+fi
 
 # Partitions
 parted -s ${device} rm 1

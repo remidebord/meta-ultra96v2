@@ -104,6 +104,33 @@ sudo ../meta-ultra96v2/scripts/flash.sh /dev/sdc ~/builds/ultra96v2/tmp/deploy/i
 
 See [How to format SD card for SD boot](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842385/How+to+format+SD+card+for+SD+boot) for more informations.
 
-## WiFi configuration
+## Tests
 
+### WiFi configuration
 TODO.
+
+### Echo test (OpenAMP)
+Make sure zynqmp_r5_remoteproc driver is loaded.
+```sh
+lsmod
+```
+
+If not loaded, load the driver.
+```sh
+modprobe zynqmp_r5_remoteproc
+```
+
+Load the echo_test firmware on r5 and start it.
+```sh
+echo image_echo_test > /sys/class/remoteproc/remoteproc0/firmware
+echo start > /sys/class/remoteproc/remoteproc0/state
+```
+
+Run the test.
+```sh
+echo_test
+```
+
+After test completion, unload the application.
+```sh
+echo stop > /sys/class/remoteproc/remoteproc0/state

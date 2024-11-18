@@ -25,35 +25,40 @@
 		};
 	};
 	
+	tcm_0a: tcm_0@0 {
+		no-map;
+		reg = <0x0 0xffe00000 0x0 0x10000>;
+		compatible = "mmio-sram";
+		power-domain = <&zynqmp_firmware 15>;
+	};
+
+	tcm_0b: tcm_0@1 {
+		no-map;
+		reg = <0x0 0xffe20000 0x0 0x10000>;
+		compatible = "mmio-sram";
+		power-domain = <&zynqmp_firmware 16>;
+	};
+
 	zynqmp-rpu {
-		compatible = "xlnx,zynqmp-r5-remoteproc-1.0";
+		compatible = "xlnx,zynqmp-r5-remoteproc";
+		xlnx,cluster-mode = <0>; /* lockstep (0), split (1) */
+		reg = <0x0 0xff9a0000 0x0 0x10000>;
+		ranges;
 		#address-cells = <2>;
 		#size-cells = <2>;
-		ranges;
-		core_conf = "split";
-		reg = <0x0 0xFF9A0000 0x0 0x10000>;
 
 		r5_0: r5@0 {
+			compatible = "xilinx,r5f";
 			#address-cells = <2>;
 			#size-cells = <2>;
 			ranges;
+			sram = <&tcm_0a>, <&tcm_0b>;
 			memory-region = <&rproc_0_reserved>, <&rpu0vdev0buffer>, <&rpu0vdev0vring0>, <&rpu0vdev0vring1>;
-			pnode-id = <0x7>;
+			power-domain = <&zynqmp_firmware 7>;
 			mboxes = <&ipi_mailbox_rpu0 0>, <&ipi_mailbox_rpu0 1>;
 			mbox-names = "tx", "rx";
-
-			tcm_0_a: tcm_0@0 {
-				reg = <0x0 0xFFE00000 0x0 0x10000>;
-				pnode-id = <0xf>;
-			};
-
-			tcm_0_b: tcm_0@1 {
-				reg = <0x0 0xFFE20000 0x0 0x10000>;
-				pnode-id = <0x10>;
-			};
 		};
 	};
-	
 	
 	zynqmp_ipi1 {
 		compatible = "xlnx,zynqmp-ipi-mailbox";

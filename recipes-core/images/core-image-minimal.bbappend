@@ -24,3 +24,11 @@ IMAGE_INSTALL:append:ultra96v2 = " libftdi \
 
 # Debug tweaks (see https://docs.yoctoproject.org/ref-manual/features.html#ref-features-image)
 EXTRA_IMAGE_FEATURES:append:ultra96v2 = " debug-tweaks empty-root-password allow-empty-password"
+
+# OpenAMP
+IMAGE_INSTALL:append:ultra96v2 = " kernel-module-uio-pdrv-genirq \
+					      kernel-module-virtio-rpmsg-bus \
+						  kernel-module-zynqmp-r5-remoteproc \
+						  "
+
+IMAGE_INSTALL:append:ultra96v2 = " openamp-fw-echo-testd rpmsg-echo-test rpmsg-utils"
