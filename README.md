@@ -109,14 +109,68 @@ bitbake core-image-minimal
 
 Use the flash.sh script available in `scripts`.
 ```
-sudo ../meta-ultra96v2/scripts/flash.sh /dev/sdc ~/builds/ultra96v2/tmp/deploy/images/ultra96v2/
+sudo ../meta-ultra96v2/scripts/flash.sh /dev/sdb ~/build/ultra96/tmp/deploy/images/ultra96v2/
 ```
 
 See [How to format SD card for SD boot](https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/18842385/How+to+format+SD+card+for+SD+boot) for more informations.
 
 ## Tests
 
+### Ethernet (via USB)
+
+You can have access to Ethernet via USB (will require a USB3 micro-b cable).
+
+First, start USB gadget script.
+```sh
+./usb_gadget_ethernet.sh
+```
+Note: script will attribute a default IP (e.g: 192.168.3.1) to usb0 interface.
+
+Connect the USB cable and set a different IP address for the interface (e.g: enxea317c27b0b3) on your computer.
+```sh
+sudo ip addr add 192.168.3.2/24 dev enxea317c27b0b3
+```
+
+You should be able to ping the board.
+```sh
+ping 192.168.3.1 
+```
+
 ### WiFi configuration
+
+#### Infrastructure (typical)
+
+First, set the interface up (wlan0).
+```sh
+ip link set wlan0 up
+```
+
+Scan access points availables.
+```sh
+iw dev wlan0 scan | grep SSID:
+```
+
+Once you got the SSID that you want to connect to, create the configuration file with the passphrase.
+```sh
+wpa_passphrase ssid passphrase > wpa.conf
+```
+
+Establish the connection.
+```sh
+wpa_supplicant -B -iwlan0 -c/home/root/wpa.conf
+```
+
+We could obtain an IP address, 
+```sh
+udhcpc -i wlan0
+```
+or configure it manually.
+```sh
+ip addr add 192.168.1.166/24 dev wlan0
+```
+
+#### Access point
+
 TODO.
 
 ### Echo test (OpenAMP)

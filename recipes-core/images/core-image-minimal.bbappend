@@ -3,6 +3,7 @@ IMAGE_INSTALL:append:ultra96v2 = " bluez5 \
                          wilc3000-fw \
                          wilc \
                          iw \
+                         wpa-supplicant \
                          usb-gadget-ethernet \
                          ethtool \
                          net-tools \
@@ -27,8 +28,8 @@ EXTRA_IMAGE_FEATURES:append:ultra96v2 = " debug-tweaks empty-root-password allow
 
 # OpenAMP
 IMAGE_INSTALL:append:ultra96v2 = " kernel-module-uio-pdrv-genirq \
-					      kernel-module-virtio-rpmsg-bus \
-						  kernel-module-zynqmp-r5-remoteproc \
-						  "
+                                   kernel-module-virtio-rpmsg-bus \
+                                   kernel-module-zynqmp-r5-remoteproc \
+                                   "
 
 IMAGE_INSTALL:append:ultra96v2 = " openamp-fw-echo-testd rpmsg-echo-test rpmsg-utils"
