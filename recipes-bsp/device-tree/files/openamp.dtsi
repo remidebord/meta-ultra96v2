@@ -55,11 +55,17 @@
 			sram = <&tcm_0a>, <&tcm_0b>;
 			memory-region = <&rproc_0_reserved>, <&rpu0vdev0buffer>, <&rpu0vdev0vring0>, <&rpu0vdev0vring1>;
 			power-domain = <&zynqmp_firmware 7>;
-			mboxes = <&ipi_mailbox_rpu0 0>, <&ipi_mailbox_rpu0 1>;
+			mboxes = <&ipi_mailbox0 0>, <&ipi_mailbox0 1>;
 			mbox-names = "tx", "rx";
 		};
 	};
-	
+
+	zynqmp_ipi_mbox_client1 {
+		compatible = "xlnx,zynqmp-ipi-mailbox-client";
+		mboxes = <&ipi_mailbox1 0 &ipi_mailbox1 1>;
+		mbox-names = "tx", "rx";
+	};
+
 	zynqmp_ipi1 {
 		compatible = "xlnx,zynqmp-ipi-mailbox";
 		interrupt-parent = <&gic>;
@@ -68,19 +74,33 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 		ranges;
-		
-		/* APU <-> RPU0 IPI mailbox controller */
-		ipi_mailbox_rpu0: mailbox@ff990600 {
+
+		/* APU (PL0) <-> RPU0 (RPU0) IPI mailbox controller (openamp) */
+		ipi_mailbox0: mailbox@ff990600 {
 			reg = <0xff990600 0x20>, /* Channel 7 request buffer */
-				  <0xff990620 0x20>,
-				  <0xff9900c0 0x20>, /* Channel 1 request buffer */
-				  <0xff9900e0 0x20>;
+			      <0xff990620 0x20>,
+			      <0xff9900c0 0x20>, /* Channel 1 request buffer */
+			      <0xff9900e0 0x20>;
 			reg-names = "local_request_region",
-						"local_response_region",
-						"remote_request_region",
-						"remote_response_region";
+				    "local_response_region",
+				    "remote_request_region",
+				    "remote_response_region";
 			#mbox-cells = <1>;
 			xlnx,ipi-id = <1>; /* Channel 1 (RPU0) */
+		};
+
+		/* APU (PL0) <-> RPU0 (PL1) IPI mailbox controller (mailbox) */
+		ipi_mailbox1: mailbox@ff990700 {
+			reg = <0xff990700 0x20>, /* Channel 7 request buffer */
+			      <0xff990720 0x20>,
+			      <0xff9908c0 0x20>, /* Channel 8 request buffer */
+			      <0xff9908e0 0x20>;
+			reg-names = "local_request_region",
+				    "local_response_region",
+				    "remote_request_region",
+				    "remote_response_region";
+			#mbox-cells = <1>;
+			xlnx,ipi-id = <8>; /* Channel 8 (PL1) */
 		};
 	};
 };

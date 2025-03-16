@@ -21,6 +21,7 @@ IMAGE_INSTALL:append:ultra96v2 = " libftdi \
                          python3 \
                          binutils \
                          ldd \
+			 lrzsz \
                          "
 
 # Debug tweaks (see https://docs.yoctoproject.org/ref-manual/features.html#ref-features-image)
@@ -33,3 +34,10 @@ IMAGE_INSTALL:append:ultra96v2 = " kernel-module-uio-pdrv-genirq \
                                    "
 
 IMAGE_INSTALL:append:ultra96v2 = " openamp-fw-echo-testd rpmsg-echo-test rpmsg-utils"
+
+KERNEL_MODULE_AUTOLOAD:remove = " kernel-module-zynqmp-r5-remoteproc"
+
+# Mailbox
+IMAGE_INSTALL:append:ultra96v2 = " kernel-module-zynqmp-ipi-mailbox-client"
+IMAGE_INSTALL:append:ultra96v2 = " openamp-fw-echo-mailbox-testd"
+

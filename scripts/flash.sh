@@ -68,7 +68,7 @@ cp ${files}/boot.scr /mnt/boot/
 
 # Extract rootfs
 echo "extract rootfs..."
-tar xzf ${files}/*.rootfs.tar.gz -C /mnt/rootfs/
+tar xzf ${files}/core-image-minimal-ultra96v2.tar.gz -C /mnt/rootfs/
 
 echo "sync..."
 sync
