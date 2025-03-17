@@ -246,7 +246,7 @@ static int zynqmp_ipi_client_probe(struct platform_device *pdev)
                         goto fifo_alloc_free;
                 }
 
-		info->tx_chan = mbox_request_channel_byname(&info->client, "rx");
+		info->rx_chan = mbox_request_channel_byname(&info->client, "rx");
 		if (IS_ERR(info->rx_chan)) {
 			dev_err(&pdev->dev, "failed to request rx channel.\n");
 			rc = -EPROBE_DEFER;
